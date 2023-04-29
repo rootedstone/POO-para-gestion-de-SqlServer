@@ -51,7 +51,7 @@ class conexion():
 # Ejemplo de uso
 #con1=conexion('nombre_dsn','nombre_base_de_datos')
 
-#con1.consulta('select * from nombre_tabla')
+#con1.consulta('select col1,col2,.... from nombre_tabla')
 #con1.carga_tabla2('nombre_df','nombre_tala')
 
 
