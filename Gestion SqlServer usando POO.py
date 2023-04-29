@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Fri Apr 28 17:46:54 2023
-
+""" Programacion POO para SqlServer
 @author: Diego Diaz Marzano
 """
 # PROGRAMACION POO PARA SQLSERVER
@@ -32,6 +30,15 @@ class conexion():
             sentencia="insert into "+tabla+f" values('{row[0]}')"
             cur.execute(sentencia)
             con.commit()
+    def carga_tabla2(self,df,tabla):
+        con=pyodbc.connect(dsn=self.dsn)
+        cur=con.cursor()
+        cur.execute('use '+self.db)
+        for row in df.to_numpy():
+            sentencia="insert into "+tabla+f" values('{row[0]}','{row[1]}')"
+            cur.execute(sentencia)
+            con.commit()
+    # Se agrega para tablas de n columnas
     def carga_tabla12(self,df,tabla):
         con=pyodbc.connect(dsn=self.dsn)
         cur=con.cursor()
@@ -43,7 +50,9 @@ class conexion():
             
 # Ejemplo de uso
 #con1=conexion('nombre_dsn','nombre_base_de_datos')
+
 #con1.consulta('select * from nombre_tabla')
+#con1.carga_tabla2('nombre_df','nombre_tala')
 
 
 
