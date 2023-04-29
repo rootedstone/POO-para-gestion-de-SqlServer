@@ -38,6 +38,14 @@ class conexion():
             sentencia="insert into "+tabla+f" values('{row[0]}','{row[1]}')"
             cur.execute(sentencia)
             con.commit()
+    def carga_tabla3(self,df,tabla):
+        con=pyodbc.connect(dsn=self.dsn)
+        cur=con.cursor()
+        cur.execute('use '+self.db)
+        for row in df.to_numpy():
+            sentencia="insert into "+tabla+f" values('{row[0]}','{row[1]}','{row[2]}')"
+            cur.execute(sentencia)
+            con.commit()
     # Se agrega para tablas de n columnas
     def carga_tabla12(self,df,tabla):
         con=pyodbc.connect(dsn=self.dsn)
